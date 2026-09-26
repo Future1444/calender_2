@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تقویم شمسی</title>
+  
+  <!-- CSS رسمی persian-datepicker -->
+  <link rel="stylesheet" href="https://unpkg.com/persian-datepicker@1.2.0/dist/css/persian-datepicker.min.css"/>
+
+  <style>
+    :root {
+      --persian-green: #00A86B;
+      --persian-green-hover: #008f5b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f8fafc;
+      font-family: Tahoma, 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    #calendar-wrapper {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* سفارشی‌سازی تقویم اینلاین به تم Persian Green */
+    .datepicker-plot-area-inline-view {
+      border: 1px solid #e2e8f0 !important;
+      border-radius: 14px !important;
+      box-shadow: 0 10px 25px rgba(0, 168, 107, 0.12), 0 4px 6px rgba(0, 0, 0, 0.04) !important;
+      overflow: hidden !important;
+      font-family: inherit !important;
+    }
+
+    /* هدر و ماه */
+    .datepicker-plot-area .datepicker-header {
+      background-color: var(--persian-green) !important;
+      border: none !important;
+    }
+
+    .datepicker-plot-area .datepicker-header .btn-next,
+    .datepicker-plot-area .datepicker-header .btn-switch,
+    .datepicker-plot-area .datepicker-header .btn-prev {
+      color: #ffffff !important;
+      font-weight: bold !important;
+    }
+
+    /* دکمه روز انتخاب‌شده و هاور */
+    .datepicker-plot-area .datepicker-day-view .table-days td.selected span {
+      background-color: var(--persian-green) !important;
+      color: #ffffff !important;
+      border-radius: 50% !important;
+    }
+
+    .datepicker-plot-area .datepicker-day-view .table-days td.today span {
+      border: 1.5px solid var(--persian-green) !important;
+      color: var(--persian-green) !important;
+      border-radius: 50% !important;
+      background: #e6f7f0 !important;
+    }
+
+    .datepicker-plot-area .datepicker-day-view .table-days td span:hover {
+      background-color: #d1f2e4 !important;
+      color: #000 !important;
+      border-radius: 50% !important;
+    }
+
+    /* روز جمعه */
+    .datepicker-plot-area .datepicker-day-view .table-days td.friday span {
+      color: #e11d48 !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="calendar-wrapper">
+    <!-- طبق مستندات کتابخانه، برای اینلاین باید یک المنت متصل شود -->
+    <div id="plotId"></div>
+  </div>
+
+  <!-- اسکریپت‌های معتبر unpkg بر اساس مستندات رسمی -->
+  <script src="https://unpkg.com/jquery@3.6.4/dist/jquery.min.js"></script>
+  <script src="https://unpkg.com/persian-date@1.1.0/dist/persian-date.min.js"></script>
+  <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('#plotId').persianDatepicker({
+        inline: true,
+        autoClose: false,
+        viewMode: 'day',
+        initialValue: true,
+        format: 'YYYY/MM/DD',
+        calendar: {
+          persian: {
+            locale: 'fa',
+            showHint: true
+          }
+        },
+        toolbox: {
+          enabled: true,
+          calendarSwitch: {
+            enabled: false
+          },
+          todayButton: {
+            enabled: true,
+            text: {
+              fa: "امروز"
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
